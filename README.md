@@ -9,3 +9,7 @@ npx skills add doque/skill-schafkopf
 ```
 
 The skill lives in [`skills/schafkopf/SKILL.md`](skills/schafkopf/SKILL.md).
+
+## License
+
+MIT

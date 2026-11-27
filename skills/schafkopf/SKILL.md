@@ -1,6 +1,9 @@
 ---
 name: schafkopf
-description: Rules, terminology and basic strategy of Schafkopf, the Bavarian trick-taking card game, following the official rules of the Schafkopfschule e.V. (successor of the Bavarian Schafkopf rules of 2007) and its tournament rules (Turnierregeln). Covers Rufspiel/Sauspiel, Solo, Wenz, Farbwenz, Geier, Farbgeier, Tout, Sie, bidding (Spielverhandlung), Rufsau duties, Davonlaufen, Laufende, Schneider/Schwarz, Stoß/Kontra, tariffs and tournament scoring, plus Bavarian card nicknames. Use when explaining, analysing, scoring, simulating or implementing Schafkopf, or when a user uses Schafkopf jargon.
+description: Rules, terminology and basic strategy of Schafkopf, the Bavarian trick-taking card game, following the official rules of the Schafkopfschule e.V. (successor of the Bavarian Schafkopf rules of 2007) and its tournament rules (Turnierregeln). Covers Rufspiel/Sauspiel, Solo, Wenz, Farbwenz, Geier, Farbgeier, Tout, Sie, bidding (Spielverhandlung), Rufsau duties, Davonlaufen, Laufende, Schneider/Schwarz, Stoß/Kontra, tariffs and tournament scoring, plus common house rules (Kurzes Blatt, Ramsch, Klopfen, Bock) and Bavarian card nicknames. Use this skill whenever Schafkopf comes up — explaining rules, settling a dispute at the table, checking whether a card or call was legal, scoring or settling up a hand, analysing or simulating deals, or implementing the game in code — and whenever the user writes Schafkopf jargon such as Sauspiel, Rufsau, Wenz, Davonlaufen, Spritze, Laufende, Schneider or "Hundsgfickte", even if they never name the game.
+license: MIT
+metadata:
+  version: "1.1"
 ---
 
 # Schafkopf
@@ -14,7 +17,19 @@ This skill follows two documents of the **Schafkopfschule e.V.** (Munich), which
 1. **Schafkopfregeln, April 2024** — the binding core of the game. Section numbers like *(R 5.1.5)* refer to it.
 2. **Turnierregeln, January 2020** — additional rules for tournaments. Referenced as *(T 6)*.
 
-The rulebook explicitly leaves tariffs, extra game types and handling of rule violations to each table (*Spielrunde*) or tournament organiser (R 3.1.2, R 7.3.1). Anything outside these documents is marked **not in the official rules**. When analysing or implementing, state which rule set applies; if the user plays at a private table, ask about their agreements.
+The rulebook explicitly leaves tariffs, extra game types and handling of rule violations to each table (*Spielrunde*) or tournament organiser (R 3.1.2, R 7.3.1). Anything outside these documents is marked **not in the official rules**. Tables differ most in tariffs, allowed games and doubling, and those change who wins how much — so when scoring, analysing or implementing, say which rule set you apply, and if the user plays at a private table, ask about their agreements instead of assuming.
+
+### Where to look
+
+This file holds the core rules. Read a reference only when the task needs it:
+
+| Task | Read |
+|---|---|
+| Tournament play, tournament scoring, Tout approval | [references/tournament.md](references/tournament.md) |
+| Kurzes Blatt, Ramsch, Klopfen/Legen, Bock, Stock, Muss | [references/house-rules.md](references/house-rules.md) |
+| Explaining or checking a whole hand step by step | [references/worked-example.md](references/worked-example.md) |
+| Translating jargon (Schmieren, frei, blank, …) | [references/glossary.md](references/glossary.md) |
+| Advice on which game to play or how to play it | [references/strategy.md](references/strategy.md) |
 
 ## Cards
 
@@ -238,7 +253,7 @@ Consecutive top trumps held by one side (combined hands in a Rufspiel), counted 
 | Farbwenz | 3 (EU GU HU) |
 | Wenz | 2 (EU GU) |
 
-Maximum per the rulebook: 14 in a Rufspiel, 8 in a Solo or Farbwenz, 4 in a Wenz. Laufende are paid only if the winners claim them before the next cut; over-claimed Laufende can be reclaimed double (R 6.2.4).
+Maximum per the rulebook: 14 in a Rufspiel, 8 in a Solo or Farbwenz, 4 in a Wenz. (By the definition above a Solo run could reach 14 and a Farbwenz run 11; the rulebook's lower figures are quoted as written — if it matters, say so and ask which applies.) Laufende are paid only if the winners claim them before the next cut; over-claimed Laufende can be reclaimed double (R 6.2.4).
 
 ### Amount per game
 
@@ -259,36 +274,6 @@ Maximum per the rulebook: 14 in a Rufspiel, 8 in a Solo or Farbwenz, 4 in a Wenz
 
 **Example**: Rufspiel lost 60:60, "ohne drei": 10 + 3 × 10 = 40 ct, each of the two losers pays one winner.
 
-## Worked example: a Wenz
-
-Dealer is Right, so Me is Vorhand. Hands (Wenz order):
-
-| Seat | Hand |
-|---|---|
-| Me (Vorhand) | GU · E10 EO E8 · H10 HK · SK SO |
-| Left | — · E7 · GK GO G8 · H8 · SA S9 S7 |
-| Across | EU SU · EA · GA G10 · HA HO H7 |
-| Right (dealer) | HU · EK E9 · G9 G7 · H9 · S10 S8 |
-
-**Bidding.** Me would call the Schellen-Sau (legal: no SA, holds SK) and says "ich möchte spielen". Left "weiter". Across is *gesperrt* (holds EA and GA, no Schellen) but has a Wenz; as second interested player he needs at least a Farbwenz: "ich möchte auch spielen". Right "weiter". Across: "ich hätte (mindestens) einen Wenz"; Me (only a Rufspiel): "weiter"; Across: "ich spiele einen Wenz".
-
-**Play** (leader first):
-
-| # | Cards | Winner | Punkte |
-|---|---|---|---|
-| 1 | Me SK, Left SA, Across SU, Right S8 | Across — Schellen-frei, trumps | 17 |
-| 2 | Across EU, Right HU, Me GU, Left S7 | Across — draws the last Unter | 6 |
-| 3 | Across EA, Right E9, Me E8, Left E7 | Across | 11 |
-| 4 | Across GA, Right G7, Me SO, Left G8 | Across — Me is Gras-frei, discards | 14 |
-| 5 | Across G10, Right G9, Me EO, Left GO | Across — G10 beats the Ober in a Wenz | 16 |
-| 6 | Across HA, Right H9, Me HK, Left H8 | Across | 15 |
-| 7 | Across HO, Right S10, Me H10, Left GK | Me — H10 beats HO; Right and Left schmieren | 27 |
-| 8 | Me E10, Left S9, Across H7, Right EK | Me | 14 |
-
-**Result.** Across 79, defence 41: won, no Schneider (defence > 29). Laufende "mit 1" — fewer than 2, not paid. Tariff: 50 ct from each defender. Tournament: Across +6, each defender −2.
-
-Legality notes: in trick 1 Across may trump because he has no Schellen. In trick 4 Me may play SO because in a Wenz the Ober is a Schellen card, not trump, and Me has no Gras. In a Rufspiel, the same EO in Me's hand would be trump and could **not** be played on an Eichel lead while Me holds E10 or E8.
-
 ## Rule violations (R 7)
 
 Typical violations (R 7.2): any utterance or behaviour revealing game-relevant information or prompting a co-player; breaking the bidding rules; invalid announcement; Stoß by the called partner; Stoß/Retour after the second card; playing out of turn (*vorwerfen*; allowed in the last trick); revoking (breaking Bedienpflicht); the partner leading a small card of the Ruffarbe with fewer than four cards before it was searched; playing the Rufsau before it was searched or before Davonlaufen; holding a wrong number of cards; looking further back than the last trick; showing or laying down cards early.
@@ -297,114 +282,16 @@ Penalties are left to the table or organiser (R 7.3.1); the deciding question is
 
 Accidents (R 7.1): a card turned during the deal → reshuffle; wrong number of cards after the deal → redeal; dealing out of turn is void unless someone has looked at a card, in which case it is played; an accidentally exposed card during pickup is ignored.
 
-## Tournament rules (Turnierregeln, Schafkopfschule 2020)
+## Common mistakes
 
-1. Rules of the Schafkopfschule apply. **Allowed: Rufspiel, Solo, Wenz, Farbwenz** (plus Tout and Sie). **No Spritze/Kontra.** No Geier.
-2. Two rounds (*Durchgänge*) of **32 games** each, no time limit.
-3. Deal **4 × 2**; instead of cutting, the player behind the dealer briefly re-shuffles (*nachmischen*) and hands the cards back face down.
-4. If no game comes about, **the same dealer** deals again.
-5. Tables and seats are drawn and must not be swapped.
-6. **Tout and Sie must be approved by the supervisor (*Aufsicht*) before play.** Minimum for Tout: Solo **4 Laufende**; Wenz **2 Laufende or 3 Unter without the Gras-Unter**; Farbwenz **3 Laufende**.
-7. Plus/minus scoring — every row sums to zero:
+These are the points where intuition from other card games leads astray:
 
-| Game | Declarer | Each other player |
-|---|---|---|
-| Rufspiel | winners +1 each | losers −1 each |
-| Rufspiel Schneider | winners +2 each | losers −2 each |
-| Rufspiel Schwarz | winners +3 each | losers −3 each |
-| Solo/Wenz won | +6 | −2 |
-| Solo/Wenz lost | −6 | +2 |
-| Solo/Wenz Schneider | ±9 | ∓3 |
-| Solo/Wenz Schwarz | ±12 | ∓4 |
-| Solo/Wenz Tout | ±18 | ∓6 |
-| Sie | +24 | −8 |
-
-   (Farbwenz scores as Solo/Wenz.) **Laufende earn no points**, only money.
-8. Money tariff alongside: 10 ct for Rufspiel, each Laufender, Schneider, Schwarz; 50 ct for Solo, Wenz, Farbwenz; Tout doubles, Sie quadruples. Laufende paid from 3 in Solo, from 2 in Wenz or Farbwenz (note: the general rulebook says from 3 in Farbwenz).
-9. Play in person, every game to the last card; minimum age 16; no spectators (*Kiebitzen*); only the organiser's cards.
-10. One player (usually seat 1 or 4) keeps the score sheet; solos and Wenzen are circled; all sign.
-11. The supervisor decides disputes, appeal to the tournament management is final. Throwing cards away early loses the game.
-12. Cheating, repeated revoking, loud protest, personal attacks or deliberately false scoring → disqualification.
-13. Winner: highest plus total over both rounds. Ties: number of Sie, then won Tout, played Tout, won solos/Wenzen, played solos/Wenzen; then lot.
-
-## Not in the official rules
-
-Commonly heard at private tables; treat as house rules and confirm before using:
-
-- **Kurzes Blatt**: 24 cards (no 7 and 8), 6 per player. The official rules cover only the long deck.
-- **Ramsch**: played when all pass; everyone for himself, most Punkte loses.
-- **Klopfen / Legen**: doubling after seeing the first cards. **Bock / Bockrunde**: rounds at doubled stakes.
-- **Stock**: a pot, e.g. paid into when all pass — permitted by agreement (R 4.1.5).
-- **Muss** / *"der Alte muss spielen"*: forced game when all pass — permitted by agreement (R 4.1.5).
-
-## Glossary
-
-| Term | Meaning |
-|---|---|
-| Punkte, Augen | Card points (120 total) |
-| Stich | Trick |
-| Ausspielen, anspielen, rauskommen | To lead |
-| Zugeben, bedienen | To play to a trick; to follow suit |
-| Stechen, überstechen | To win with a trump / beat the current winner |
-| Schmieren | Give Sau or Zehn to a trick one's own side wins |
-| Abwerfen | Discard while void |
-| Frei | Void in a suit ("Gras-frei") |
-| Blank | Single card in a suit ("blanke Zehn") |
-| Durchlaufen, läuft | A plain card wins because nobody trumps ("die Sau läuft") |
-| Trumpf ziehen | Lead trumps to draw them |
-| Spielmacher | Declarer |
-| Spielerpartei / Gegenspielerpartei | Declaring side / defence |
-| Rufsau, Ruffarbe, der Gerufene | Called ace, its suit, the partner |
-| Gesucht | The Ruffarbe has been led |
-| Davonlaufen | Partner leads small from 4+ cards of the Ruffarbe |
-| Gesperrt | Cannot call any Sau |
-| Einzelspiel | Solo, Wenz, Farbwenz, Geier, Farbgeier |
-| Laufende, mit/ohne n | Run of top trumps |
-| Schneider, schneiderfrei, Schwarz | See *Result* |
-| Tout, Sie | All tricks; all 8 Ober and Unter |
-| Stoß (Kontra, Spritze), Retour | Doubling by defence / by declaring side |
-| Weiter | Pass |
-| Zusammenwerfen | Throw in the hand |
-| Vorwerfen | Playing out of turn |
-| Kiebitz | Spectator |
-| Spatzen, Luschen | 0-point cards |
-
-## Strategy basics
-
-Not part of the rules; common practice.
-
-**Choosing a game**
-
-- **Rufspiel**: roughly 4+ trumps including at least one Ober, ideally a plain Sau or a void. Call a suit where you hold only one card, so the Rufsau is likely to win when searched and you become free in it.
-- **Solo**: typically 6+ trumps with at least two top Ober, or 7 trumps with a plain Sau. Laufende reduce risk.
-- **Wenz**: two or more Unter (EU and GU ideal) and long suits headed by Sau–Zehn. Being Vorhand matters a lot.
-- **Farbwenz**: Unter plus length in the trump suit.
-- **Tout**: only when every trick is certain (in tournaments, the minimums of T 6 apply anyway).
-- **Stoß**: when the defence likely holds more trump strength than the declaring side; a wrong Stoß doubles the loss.
-
-**Declaring side**
-
-- Draw trumps early so plain Saus and Zehner run later.
-- Count trumps (14 in Rufspiel and Solo) and Punkte silently.
-
-**Defence**
-
-- In a Rufspiel, search the Rufsau early: lead the Ruffarbe. It reveals the partner, and the caller often holds only one card of it.
-- Schmieren onto tricks your side will surely win; don't feed Punkte the declarer can trump.
-- Against a Wenz: lead suits where you hold the Sau, keep Zehner guarded, and avoid helping the declarer establish his long suit.
-
-**Partner in a Rufspiel**
-
-- Davonlaufen with the Sau plus three or more small cards — otherwise the Sau is likely trumped by a void defender when searched.
-- Before the Sau falls, nobody knows you; infer the partner from who searches or avoids the Ruffarbe.
-
-## Checklist for agents
-
-- Default to the Schafkopfschule rules; in tournament context apply the Turnierregeln (no Kontra, no Geier, 4 × 2 deal, same dealer redeals, Tout approval, plus/minus points).
-- Treat Ober/Unter per game type: trump in Rufspiel and Solo, only Unter in Wenz/Farbwenz, only Ober in Geier/Farbgeier.
-- Check Rufspiel calls (not own Sau, at least one plain card of the suit, Herz never).
-- Enforce Rufsau duties and the four-card Davonlaufen rule.
-- Thresholds: 61 to win (60 for the defence); Schneider at ≤ 30 for the declarers, ≤ 29 for the defence; Schwarz = zero tricks.
+- **Ober and Unter change suit with the game.** In Rufspiel and Solo they are trump and belong to no suit, so `EO` cannot follow an Eichel lead; in Wenz/Farbwenz only the Unter are trump and the Ober are ordinary suit cards (Geier: the reverse). Decide suit membership per game before checking Bedienpflicht.
+- **The Zehn ranks above the König**, directly below the Sau.
+- **No obligation to trump or overtake** — only to follow suit.
+- **The thresholds are asymmetric**: the declarers need 61 (the defence 60) and 31 to escape Schneider (the defence 30). Schwarz means zero tricks, not zero Punkte.
+- **Rufspiel calls**: never Herz, never one's own Sau, always with a plain card of that suit. The Rufsau must be played when its suit is first led, and Davonlaufen needs four cards of the suit.
+- **Tournaments differ**: no Kontra, no Geier, 4 × 2 deal, the same dealer redeals after all pass — see [references/tournament.md](references/tournament.md).
 
 ## Sources
 
